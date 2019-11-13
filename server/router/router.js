@@ -30,4 +30,15 @@ router.post("/webhook", async (req, res) => {
   await information.save();
 });
 
+router.delete('/:id', async(req, res) => {
+  try{
+      const info = await Information.findByIdAndDelete(req.params.id)
+      res.send(info)
+  }
+  catch(e){
+      if(e.name === 'CastError') return res.status(404).send('ID not found.')
+      res.status(500).send(e)
+  }
+})
+
 module.exports = router;
