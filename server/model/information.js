@@ -21,6 +21,6 @@ const informationSchema = mongoose.Schema(
     }
   }
 );
-const Task = mongoose.model("Information", informationSchema);
+const Information = mongoose.model("Information", informationSchema);
 
-module.exports = Task;
+module.exports = Information;

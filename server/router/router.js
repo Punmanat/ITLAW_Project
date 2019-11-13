@@ -1,14 +1,28 @@
 const express = require("express");
 const router = express.Router();
-const Information = require("../model/information")
+const Information = require("../model/information");
 
-router.get("/", (req, res) => {
-  res.render('index')
+router.get("/", async (req, res) => {
+  const information = await Information.find({});
+  res.render("index", { information });
 });
 
-router.post("/webhook", (req, res) => {
+router.post("/webhook", async (req, res) => {
   console.log("POST: /");
-  console.log("Body: ", req.body.queryResult.outputContexts[0].parameters);
+  const {
+    firstname,
+    lastname,
+    card,
+    back
+  } = req.body.queryResult.outputContexts[0].parameters;
+  const information = new Information({
+    firstname,
+    lastname,
+    card,
+    backcard: back
+  });
+
+  await information.save();
 });
 
 module.exports = router;

@@ -4,6 +4,7 @@ const path = require("path");
 const port = process.env.PORT || 4000;
 const router = require('./router/router')
 const ejs = require('ejs')
+require('./database/db')
 
 app.use(express.json())
 app.set("view engine", "ejs");
