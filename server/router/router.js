@@ -4,8 +4,13 @@ const Information = require("../model/information");
 
 router.get("/", async (req, res) => {
   const information = await Information.find({});
-  res.render("index", { information });
+  res.render("index");
 });
+router.get("/data", async (req, res) => {
+  const information = await Information.find({});
+  res.send(information);
+});
+
 
 router.post("/webhook", async (req, res) => {
   console.log("POST: /");

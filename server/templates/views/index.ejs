@@ -5,9 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Athiti|Krub|Prompt&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Hello, world</h1>
-    <p><%= information %></p>
+    <div id="app" class="container">
+        <br><br>
+        <div class="row">
+            <div class="col sm-8">
+                <h3>ข้อมูลผู้สมัคชิมใช้ชอป</h3>
+            </div>
+            <div class="col sm-4">
+                <div class="search-bar">
+                    <input class="search-input" type="text" v-model="search"
+                        placeholder=" ค้นหารายชื่อ" />
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ชื่อ</th>
+                    <th>นามสกุล</th>
+                    <th>หน้าบัตร</th>
+                    <th>หลังบัตร</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr v-for="info, i in filterInfo" v-bind:key="info.id">
+                    <td>{{ info.firstname }}</td>
+                    <td>{{ info.lastname }}</td>
+                    <td>{{ info.card }}</td>
+                    <td>{{ formatcard(info.backcard) }}</td>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            hello:"Hello",
+            search: "",
+            information:[]
+        },
+        methods:{
+            formatcard(value){
+                let val = value.slice(0, 3) + "-" + value.slice(3, 10) + "-" + value.slice(10, )
+                return val
+            }
+        },
+        mounted:async function (){
+            const {data }= await axios.get("https://90de5e43.ngrok.io/data")
+            this.information = data
+        },
+        computed: {
+            filterInfo() {
+                return this.information.filter(info => {
+                    return info.firstname.includes(this.search) || info.lastname.includes(this.search);
+                })
+            }
+        }
+    })
+    
+    </script>
 </body>
 </html>
