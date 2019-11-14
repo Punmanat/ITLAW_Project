@@ -14,7 +14,7 @@
         <br><br>
         <div class="row">
             <div class="col sm-8">
-                <h3>ข้อมูลผู้สมัคชิมใช้ชอป</h3>
+                <h3>ข้อมูลผู้สมัครชิมใช้ชอป</h3>
             </div>
             <div class="col sm-4">
                 <div class="search-bar">
@@ -29,6 +29,7 @@
                     <th>นามสกุล</th>
                     <th>หน้าบัตร</th>
                     <th>หลังบัตร</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,7 @@
                     <td>{{ info.lastname }}</td>
                     <td>{{ info.card }}</td>
                     <td>{{ formatcard(info.backcard) }}</td>
+                    <th><img style="cursor:pointer" src="https://img.icons8.com/windows/32/000000/delete-forever.png" v-on:click="del(info._id)"></th>
                 </tbody>
             </table>
             </div>
@@ -59,10 +61,16 @@
             formatcard(value){
                 let val = value.slice(0, 3) + "-" + value.slice(3, 10) + "-" + value.slice(10, )
                 return val
+            },
+            async del(value) {
+                alert("delete completed")
+                await axios.delete('https://itlaw-project-258911.appspot.com/delete/'+value)
+                const { data }= await axios.get("https://itlaw-project-258911.appspot.com/data")
+                this.information = data
             }
         },
         mounted:async function (){
-            const {data }= await axios.get("https://itlaw-project-258911.appspot.com/data")
+            const { data }= await axios.get("https://itlaw-project-258911.appspot.com/data")
             this.information = data
         },
         computed: {

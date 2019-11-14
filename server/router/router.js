@@ -30,7 +30,7 @@ router.post("/webhook", async (req, res) => {
   await information.save();
 });
 
-router.delete('/:id', async(req, res) => {
+router.delete('/delete/:id', async(req, res) => {
   try{
       const info = await Information.findByIdAndDelete(req.params.id)
       res.send(info)
