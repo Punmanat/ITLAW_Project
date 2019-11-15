@@ -70,13 +70,13 @@
             },
             async del(value) {
                 alert("delete completed")
-                await axios.delete('https://9d1963c3.ngrok.io/delete/'+value)
-                const { data }= await axios.get("https://9d1963c3.ngrok.io/data")
+                await axios.delete('https://itlaw-project-258911.appspot.com/delete/'+value)
+                const { data }= await axios.get("https://itlaw-project-258911.appspot.com/data")
                 this.information = data
             }
         },
         mounted:async function (){
-            const { data }= await axios.get("https://9d1963c3.ngrok.io/data")
+            const { data }= await axios.get("https://itlaw-project-258911.appspot.com/data")
             this.information = data
         },
         computed: {
