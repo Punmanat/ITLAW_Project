@@ -17,12 +17,14 @@ router.post("/webhook", async (req, res) => {
   const {
     firstname,
     lastname,
+    phone_number,
     card,
     back
   } = req.body.queryResult.outputContexts[0].parameters;
   const information = new Information({
     firstname,
     lastname,
+    phone_number,
     card,
     backcard: back
   });

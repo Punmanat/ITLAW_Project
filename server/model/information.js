@@ -9,6 +9,13 @@ const informationSchema = mongoose.Schema(
     },
     lastname: {
       type: String,
+      required: true,
+      trim: true
+    },
+    phone_number:{
+      type: String,
+      required: true,
+      trim: true
     },
     card: {
       type: String,
