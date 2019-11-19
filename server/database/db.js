@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://satawatnack:0869099404@data-t4oes.gcp.mongodb.net/dialogflow?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://satawatnack:1234567890@cluster0-xpbvt.gcp.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
